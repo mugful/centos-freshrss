@@ -3,7 +3,7 @@
 set -euxo pipefail
 
 yum -y install epel-release
-yum -y install jq httpd php php-pdo unzip
+yum -y install jq httpd php php-gd php-pdo unzip
 yum clean all
 
 RELEASE_ARCHIVE=$(curl -Ls https://api.github.com/repos/SSilence/selfoss/releases/latest | jq -r '.assets | map(.browser_download_url | select(test("zip$")))[0]')
