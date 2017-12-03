@@ -1,0 +1,25 @@
+#!/bin/bash
+set -euo pipefail
+
+FRESHRSS_PATH=/var/www/freshrss
+
+# create htpasswd file if not present, but wanted
+if [ ! -e /etc/httpd/conf/freshrss-htpasswd -a -n "${FRESHRSS_HTPASSWD:-}" ]; then
+    echo "$FRESHRSS_HTPASSWD" > /etc/httpd/conf/freshrss-htpasswd
+fi
+
+# set auth mode for the freshrss web
+if [ -e /etc/httpd/conf/freshrss-htpasswd ]; then
+    export FRESHRSS_WEB_AUTH_REQUIRE="valid-user"
+else
+    export FRESHRSS_WEB_AUTH_REQUIRE="all granted"
+fi
+
+# if running for the first time, seed the data directory
+if [ ! -e "$FRESHRSS_PATH/data/.htaccess" ]; then
+    cp -aT "$FRESHRSS_PATH/dist-data" "$FRESHRSS_PATH/data"
+fi
+
+chown -R apache: "$FRESHRSS_PATH/data"
+
+exec httpd -DFOREGROUND

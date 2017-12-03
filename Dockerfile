@@ -8,4 +8,4 @@ RUN /root/build.sh
 
 COPY files /
 
-CMD ["/usr/local/bin/container-selfoss"]
+CMD ["/usr/local/bin/container-freshrss"]
