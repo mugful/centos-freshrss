@@ -3,12 +3,18 @@ centos-freshrss
 
 A freshrss RSS/Atom reader container image built on top of CentOS.
 
-Build
------
+Pull
+----
 
-    git clone https://github.com/dockingbay/centos-freshrss
+Either pull from Quay.io:
+
+    docker pull quay.io/mugful/centos-freshrss:master
+
+Or build your own:
+
+    git clone https://github.com/mugful/centos-freshrss
     cd centos-freshrss
-    docker build --force-rm -t dockingbay/centos-freshrss:latest .
+    docker build --force-rm -t mugful/centos-freshrss:master .
 
 Configure
 ---------
@@ -34,4 +40,4 @@ reverse proxy in front of it.
         --name my_freshrss \
         -v /var/lib/freshrss:/var/www/freshrss/data:Z
         -p 127.0.0.1:8080:80 \
-        dockingbay/centos-freshrss
+        quay.io/mugful/centos-freshrss:master
