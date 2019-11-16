@@ -2,7 +2,7 @@
 
 set -euxo pipefail
 
-dnf -y install jq httpd pcre pcre2 php php-gd php-mbstring php-pdo php-xml zlib
+dnf -y install jq httpd pcre pcre2 php php-gd php-json php-mbstring php-pdo php-xml zlib
 dnf clean all
 
 RELEASE_ARCHIVE='https://github.com/FreshRSS/FreshRSS/archive/master.tar.gz'
