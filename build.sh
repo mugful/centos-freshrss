@@ -2,9 +2,8 @@
 
 set -euxo pipefail
 
-yum -y install epel-release
-yum -y install libticonv jq httpd pcre pcre2 php php-gd php-mbstring php-pdo php-xml zlib
-yum clean all
+dnf -y install jq httpd pcre pcre2 php php-gd php-mbstring php-pdo php-xml zlib
+dnf clean all
 
 RELEASE_ARCHIVE='https://github.com/FreshRSS/FreshRSS/archive/master.tar.gz'
 LOCAL_ARCHIVE=/tmp/freshrss.tar.gz
